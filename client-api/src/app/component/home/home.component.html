@@ -1,0 +1,68 @@
+<mat-card>
+  <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" [(ngModel)]="first_name" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" [(ngModel)]="last_name" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Phone Number" [(ngModel)]="phone_number" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addContact()">Add</button>
+      <br><br>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="ID" [(ngModel)]="_id" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="updateContact()">Update</button>
+  </form>
+  
+  <hr>
+
+  <table mat-table [(dataSource)]="contacts" class="mat-elevation-z8">    
+    <!-- Id Column -->
+    <ng-container matColumnDef="contactid">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let contact"> {{contact._id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let contact"> {{contact.first_name}} {{contact.last_name}} </td>
+    </ng-container>
+  
+    <!-- Phone Number  -->
+    <ng-container matColumnDef="phonenumber">
+      <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+      <td mat-cell *matCellDef="let contact"> {{contact.phone_number}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let contact"> <button mat-raised-button color="warn" (click)="deleteContact(contact._id)">Yes</button> </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  <!--
+  <input type="text" [(ngModel)]="first_name" placeholder="first name"> &nbsp;
+  <input type="text" [(ngModel)]="last_name"placeholder="last name"> &nbsp;
+  <input type="text" [(ngModel)]="phone_number" placeholder="phone number"> &nbsp;
+  <input type="button" (click)="addContact()" value="add"> <br/><br/>
+  
+  <input [(ngModel)]="identered" type="text" placeholder="id"> &nbsp;
+  <input type="button" (click)="updateContact(identered)" value="update">
+  <br/><br/><hr/><br/>
+
+  <hr>
+  
+  <div *ngFor="let contact of contacts">
+    <input type="button" (click)="deleteContact(contact._id)" value="delete"> 
+    <b> {{contact._id}} : {{contact.first_name}} {{contact.last_name}} : {{contact.phone_number}} </b> 
+    <br/><br/>
+  </div>
+  -->
+</mat-card>
